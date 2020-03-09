@@ -10,12 +10,13 @@ int p = 0;
 char* str = "hello world";
 
 //adapted from og exercise
+//father proccess forks each letter written (f-s-f-s-f-s...)
 int main(void) {
 
     while(p < strlen(str)){
         char c = str[p++];
         write(STDOUT_FILENO,&c,1);
-        
+
         if(fork() > 0){
             p++;
             wait(NULL);
