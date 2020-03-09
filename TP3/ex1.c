@@ -1,15 +1,18 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
 
 int global=1;
 int main(void) {
     int local = 2;
     if(fork() > 0) {
-        printf("PID = %d; PPID = %d\n", getpid(), getppid());
+        printf("PID = %d; PPID = %d aka pai\n", getpid(), getppid());
         global++;
         local--;
     } else {
-        printf("PID = %d; PPID = %d\n", getpid(), getppid());
+        printf("PID = %d; PPID = %d aka filho\n", getpid(), getppid());
         global--;
         local++;
     }
